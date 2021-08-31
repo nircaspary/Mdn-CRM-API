@@ -13,8 +13,10 @@ const AppError = require('./utils/appError');
 const gloalErrorHandler = require('./controllers/errorController');
 
 // GLOBAL MIDDLEWARES
+
 // Set security HTTP headers
-app.use(helmet());
+// app.use(helmet());
+
 app.use(cors({ credential: true, origin: 'http://localhost:3000' }));
 // Development logging
 app.use(morgan('dev'));
