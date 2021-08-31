@@ -1,5 +1,6 @@
 import { React } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import 'semantic-ui-css/semantic.min.css';
 import { ProtectedRoute } from '../models/ProtectedRoutes';
 import Navbar from './Navbar';
 import Form from './Form';
