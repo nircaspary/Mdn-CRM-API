@@ -1,0 +1,61 @@
+div.field.form-element{
+  padding: 0
+}
+.ui.form-container {
+  border-radius: 0 20px 0px 0px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  max-width: 95vw;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  width: 80%;
+  padding: 0 100px 100px 100px;
+  border-radius: 10px;
+}
+.fault-form{
+  width:60%;
+  margin-top:40px;
+  padding-bottom: 40px;
+}
+.profile-form {
+  width: 60%;
+  margin-top: 40px;
+  height: 100%;
+}
+h1 {
+  font-size: 35px;
+  font-family: 'Poppins';
+  text-align: center;
+}
+
+
+.user-id {
+  visibility: visible !important;
+}
+
+.header-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.clear {
+  height: 40px;
+}
+
+@media screen and (max-width: 1200px) {
+  .ui.form-container {
+    border-top-right-radius: 0px;
+    min-height:400px;
+  }
+  .login-form {
+    width: 100%;
+  }
+}

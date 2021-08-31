@@ -1,0 +1,122 @@
+[
+  {
+    "user_id": "6023dc25557793c29d884ad6",
+    "description": "tech fault 1",
+    "team": "tech"
+  },
+  {
+    "user_id": "6023dc39557793c29d8855e8",
+    "description": "tech fault 2",
+    "team": "tech"
+  },
+  {
+    "user_id": "6023dc25557793c29d884ad6",
+    "description": "tech fault 3",
+    "team": "tech"
+  },
+  {
+    "user_id": "6023dc39557793c29d8855e8",
+    "description": "help fault 1",
+    "team": "help desk"
+  },
+  {
+    "user_id": "6023dc41557793c29d885923",
+    "description": "help fault 2",
+    "team": "help desk"
+  },
+  {
+    "user_id": "6023dc47557793c29d885b09",
+    "description": "help fault 3",
+    "team": "help desk"
+  },
+  {
+    "user_id": "6023dc41557793c29d885923",
+    "description": "info fault 1",
+    "team": "info"
+  },
+  {
+    "user_id": "6023dc53557793c29d886036",
+    "description": "info fault 2",
+    "team": "info"
+  },
+  {
+    "user_id": "6023dc47557793c29d885b09",
+    "description": "info fault 3",
+    "team": "info"
+  },
+  {
+    "user_id": "6023dc4d557793c29d885d90",
+    "description": "lab fault 1",
+    "team": "lab"
+  },
+  {
+    "user_id": "6023dc4d557793c29d885d90",
+    "description": "lab fault 2",
+    "team": "lab"
+  },
+  {
+    "user_id": "6023dc4d557793c29d885d90",
+    "description": "lab fault 3",
+    "team": "lab"
+  },
+  {
+    "user_id": "6023dc25557793c29d884ad6",
+    "description": "tech fault 1",
+    "team": "tech"
+  },
+  {
+    "user_id": "6023dc39557793c29d8855e8",
+    "description": "tech fault 2",
+    "team": "tech"
+  },
+  {
+    "user_id": "6023dc25557793c29d884ad6",
+    "description": "tech fault 3",
+    "team": "tech"
+  },
+  {
+    "user_id": "6023dc39557793c29d8855e8",
+    "description": "help fault 1",
+    "team": "help desk"
+  },
+  {
+    "user_id": "6023dc41557793c29d885923",
+    "description": "help fault 2",
+    "team": "help desk"
+  },
+  {
+    "user_id": "6023dc47557793c29d885b09",
+    "description": "help fault 3",
+    "team": "help desk"
+  },
+  {
+    "user_id": "6023dc41557793c29d885923",
+    "description": "info fault 1",
+    "team": "info"
+  },
+  {
+    "user_id": "6023dc53557793c29d886036",
+    "description": "info fault 2",
+    "team": "info"
+  },
+  {
+    "user_id": "6023dc47557793c29d885b09",
+    "description": "info fault 3",
+    "team": "info"
+  },
+  {
+    "user_id": "6023dc4d557793c29d885d90",
+    "description": "lab fault 1",
+    "team": "lab"
+  },
+  {
+    "user_id": "6023dc4d557793c29d885d90",
+    "description": "lab fault 2",
+    "team": "lab"
+  },
+  {
+    "user_id": "6023dc4d557793c29d885d90",
+    "description": "lab fault 3",
+    "team": "lab"
+  }
+]

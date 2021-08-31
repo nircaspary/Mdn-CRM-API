@@ -1,0 +1,39 @@
+.ui.container {
+  margin-top: 2%;
+  margin-bottom: 5%;
+  min-height: 90vh;
+  grid-template-columns: 1fr 4fr;
+  display: grid;
+  width: 95vw;
+  
+}
+.ui .button {
+  background-color: #498fff;
+  color: white;
+  width: 200px
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-image: linear-gradient(#498fff, #498fff);
+  display: flex;
+ 
+  flex-direction: column;
+  font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+}
+
+
+
+
+@media screen and (max-width: 1200px) {
+  .ui.container {
+    display: flex;
+    flex-direction: column;
+  }
+}

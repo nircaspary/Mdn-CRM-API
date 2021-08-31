@@ -1,0 +1,41 @@
+{
+  "extends": ["prettier"],
+  "plugins": ["prettier"],
+  "rules": {
+    "react/prop-types": "off",
+    
+    "import/newline-after-import":"off",
+    "prettier/prettier": "error",
+    "spaced-comment": "off",
+    "no-shadow": "off",
+    "react/jsx-props-no-spreading":"off",
+    "no-undef":"off",
+    "no-console": "off",
+    "consistent-return": "off",
+    "func-names": "off",
+    "object-shorthand": "off",
+    "no-process-exit": "off",
+    "no-param-reassign": "off",
+    "no-return-await": "off",
+    "no-underscore-dangle": "off",
+    "class-methods-use-this": "off",
+    "prefer-destructuring": ["error", { "object": true, "array": false }],
+    "no-unused-vars":"off"
+    
+  },
+  
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "sourceType": "module",
+        "allowImportExportEverywhere": true,
+        "ecmaVersion": 2017
+    },
+
+"env": {
+    "es6": true
+}
+}
+// "no-unused-vars": ["error", { "argsIgnorePattern": "req|res|next|val" }]
+// "extends": ["airbnb", "prettier", "plugin:node/recommended"],
+// "import/no-extraneous-dependencies": ["error",  {"devDependencies": true}],
+// "plugins": ["airbnb","prettier"]

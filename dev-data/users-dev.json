@@ -1,0 +1,72 @@
+[
+  {
+    "id": "111111111",
+    "firstName": "Help Desk",
+    "lastName": "User",
+    "email": "Helpdeskuser@@gmail.com",
+    "cellPhone": "054111111",
+    "officePhone": "5691111",
+    "faultLocation": "room 1",
+    "computerName": "11111",
+    "role": "help desk",
+    "password": "123456"
+  },
+  {
+    "id": "222222222",
+    "firstName": "Lab",
+    "lastName": "User",
+    "email": "Labuser@gmail.com",
+    "cellPhone": "054222222",
+    "officePhone": "5692222",
+    "faultLocation": "room 2",
+    "computerName": "22222",
+    "role": "lab",
+    "password": "123456"
+  },
+  {
+    "id": "333333333",
+    "firstName": "Info",
+    "lastName": "User",
+    "email": "Infouser@gmail.com",
+    "cellPhone": "054333333",
+    "officePhone": "5693333",
+    "faultLocation": "room 3",
+    "computerName": "33333",
+    "role": "info",
+    "password": "123456"
+  },
+  {
+    "id": "444444444",
+    "firstName": "Tech",
+    "lastName": "user",
+    "email": "Techuser@gmail.com",
+    "cellPhone": "054444444",
+    "officePhone": "5694444",
+    "faultLocation": "room 4",
+    "computerName": "44444",
+    "role": "tech",
+    "password": "123456"
+  },
+  {
+    "id": "555555555",
+    "firstName": "Regular",
+    "lastName": "User",
+    "email": "Regularuser@gmail.com",
+    "cellPhone": "054555555",
+    "officePhone": "5695555",
+    "faultLocation": "room 5",
+    "computerName": "55555"
+  },
+  {
+    "id": "123456789",
+    "firstName": "Admin",
+    "lastName": "User",
+    "email": "Adminuser@gmail.com",
+    "cellPhone": "054123456",
+    "officePhone": "12345",
+    "faultLocation": "Admins Place",
+    "computerName": "12345",
+    "role": "admin",
+    "password": "123456"
+  }
+]

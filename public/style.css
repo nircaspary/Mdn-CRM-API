@@ -1,0 +1,12 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-image: linear-gradient(#498fff, #498fff);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
