@@ -66,3 +66,11 @@ export const passwordSchema = yup.object().shape({
 export const emailSchema = yup.object().shape({
   email: yup.string().trim().required({ message: 'You must provide an Email adress' }).email({ message: 'Please enter a valid email' }),
 });
+
+export const forgotPasswordSchema = yup.object().shape({
+  password: yup.string().trim().required({ message: 'Password is required' }),
+  passwordConfirm: yup
+    .string()
+    .trim()
+    .oneOf([yup.ref('password'), null], { message: 'Passwords must match' }),
+});

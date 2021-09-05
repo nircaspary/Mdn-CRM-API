@@ -4,16 +4,18 @@ import { useHistory } from 'react-router';
 const ForgotPasswordRes = () => {
   const history = useHistory();
   const styles = {
-    height: '90%',
+    height: '100%',
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: '30px',
   };
   return (
-    <div>
-      <div style={styles}>Reset password email has been sent to your mail inbox</div>
-      <a onClick={() => history.replace('/')}>Back to home page</a>
+    <div style={styles}>
+      <h1>Reset password email has been sent to your mail inbox</h1>
+      <a onClick={() => history.replace('/')} style={{ cursor: 'pointer' }}>
+        Back to home page
+      </a>
     </div>
   );
 };

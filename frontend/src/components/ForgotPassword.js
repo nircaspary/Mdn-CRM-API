@@ -8,7 +8,6 @@ import RenderLoader from './common/RenderLoader';
 import { emailSchema } from '../models/FormValidations';
 
 const ForgotPassword = () => {
-  const [email, setEmail] = useState('');
   const [serverErrors, setServerErrors] = useState('');
   const [isPending, setIsPending] = useState(false);
   const history = useHistory();
@@ -19,7 +18,7 @@ const ForgotPassword = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(emailSchema) });
 
-  const onSubmit = async () => {
+  const onSubmit = async ({ email }) => {
     setIsPending(true);
     try {
       const res = await Http.post('auth/forgotPassword', { email });
@@ -43,16 +42,9 @@ const ForgotPassword = () => {
         <form className="ui form login-form" autoComplete="off" noValidate onSubmit={handleSubmit(onSubmit)}>
           <h1>Forgot your password?</h1>
           <p style={{ textAlign: 'center' }}>please enter your email address for validation</p>
-          <Input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="ex: user@gmail.com"
-            register={register}
-            label="email"
-            errors={errors.email}
-          />
+          <Input placeholder="ex: user@gmail.com" register={register} label="email" errors={errors.email} />
           <input type="submit" value="Get verification code" className="ui button form-element" />
-          {serverErrors && <p className="error">{serverErrors}</p>}
+          {serverErrors && <p style={{ color: 'red' }}>{serverErrors}</p>}
         </form>
       )}
     </>

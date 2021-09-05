@@ -13,7 +13,7 @@ export const useFetch = (url, ...rest) => {
       errors && setErrors([]);
       try {
         const res = await Http.get(url);
-        if (res) {
+        if (res.data) {
           setIsPending(false);
           setData(res.data.data);
         }
