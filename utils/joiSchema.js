@@ -27,7 +27,7 @@ exports.userSchema = Joi.object({
     roomNumber: Joi.number().required(),
   }),
   computerName: Joi.string().trim().length(5),
-  role: Joi.string().trim().required().valid('user', 'admin', 'help desk', 'tech', 'lab', 'info'),
+  role: Joi.optional(),
 });
 
 exports.userWithPasswordSchema = Joi.object({

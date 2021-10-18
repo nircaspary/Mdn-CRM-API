@@ -49,7 +49,7 @@ exports.login = catchAsync(async (req, res, next) => {
 // This route is for the regular user auto creation on the fault creation form.
 exports.signup = catchAsync(async (req, res, next) => {
   // For security reasons that not everybody could enter role
-  req.body.role = 'user';
+  if (req.body.role) req.body.role = 'user';
   // Joi Validation
   const { error } = validate(userSchema, req.body);
   if (error) return next(new AppError(error.message, 400));
