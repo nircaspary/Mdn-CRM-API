@@ -1,3 +1,4 @@
+const { optional } = require('joi');
 const Joi = require('joi');
 
 const regex = { cellPhone: /^0[2-9]\d{7,8}$/ };
@@ -45,6 +46,23 @@ exports.userWithPasswordSchema = Joi.object({
   computerName: Joi.string().trim().length(5),
   role: Joi.string().trim().required().valid('user', 'admin', 'help desk', 'tech', 'lab', 'info'),
   password: Joi.string().trim().required(),
+  passwordConfirm: Joi.ref('password'),
+});
+exports.updateUserSchema = Joi.object({
+  id: Joi.string().trim().length(9),
+  firstName: Joi.string().trim().required(),
+  lastName: Joi.string().trim().required(),
+  email: Joi.string().trim().required().email(),
+  cellPhone: Joi.string().trim().regex(regex.cellPhone).length(10),
+  officePhone: Joi.string().trim().length(7),
+  location: Joi.object().keys({
+    building: Joi.string().trim().required(),
+    floor: Joi.number().required(),
+    roomNumber: Joi.number().required(),
+  }),
+  computerName: Joi.string().trim().length(5),
+  role: Joi.string().trim().required().valid('user', 'admin', 'help desk', 'tech', 'lab', 'info'),
+  password: Joi.optional(),
   passwordConfirm: Joi.ref('password'),
 });
 

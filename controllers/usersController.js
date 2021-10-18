@@ -2,7 +2,7 @@ const User = require('../models/usersModel');
 const APIFeatures = require('../utils/apiFeatures');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
-const { validate, userSchema, userWithPasswordSchema } = require('../utils/joiSchema');
+const { validate, userSchema, updateUserSchema } = require('../utils/joiSchema');
 
 exports.getAllUsers = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(User.find(), req.query).filter().sort().limitFields().paginate();
@@ -65,7 +65,7 @@ exports.getMe = catchAsync(async (req, res, next) => {
 });
 
 exports.updateUser = catchAsync(async (req, res, next) => {
-  const { error } = validate(req.body.role !== 'user' ? userWithPasswordSchema : userSchema, req.body);
+  const { error } = validate(updateUserSchema, req.body);
   if (error) return next(new AppError(error.message, 400));
 
   // If passed the validation update user
