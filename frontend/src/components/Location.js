@@ -18,7 +18,7 @@ const Location = ({ passLocation, userLocation }) => {
         <Dropdown label="Floor" options={floors(8)} header={floor} onChange={(e) => setFloor(e.target.value)} />
       </div>
       <div className="field form-element">
-        <Dropdown label="Room Number" options={roomNumbers(floor)} onChange={(e) => setRoomNumber(e.target.value)} />
+        <Dropdown label="Room Number" options={roomNumbers(floor)} header={roomNumber} onChange={(e) => setRoomNumber(e.target.value)} />
       </div>
     </>
   );

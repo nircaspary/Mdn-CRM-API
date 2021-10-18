@@ -29,9 +29,13 @@ const CreateUser = () => {
     const { firstName, lastName, email, cellPhone, officePhone, computerName, id, password, passwordConfirm } = data;
     const user = { firstName, lastName, email, cellPhone, officePhone, location, computerName, id, role, password, passwordConfirm };
     // Send User Data To The Users Collection
-    const userRes = await Http.post('users', user);
-    toast.success('U Have Successfully Created User');
-    setTimeout(() => history.push('/admins/users'), 3000);
+    try {
+      const userRes = await Http.post('users', user);
+      toast.success('U Have Successfully Created User');
+      setTimeout(() => history.push('/admins/users'), 3000);
+    } catch (err) {
+      if (err) setServerErrors(err.response.data.message);
+    }
   };
 
   return (

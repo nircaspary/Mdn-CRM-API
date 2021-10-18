@@ -2,6 +2,7 @@ const User = require('../models/usersModel');
 const APIFeatures = require('../utils/apiFeatures');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
+const { validate, userSchema, userWithPasswordSchema } = require('../utils/joiSchema');
 
 exports.getAllUsers = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(User.find(), req.query).filter().sort().limitFields().paginate();
@@ -40,6 +41,9 @@ exports.findUser = catchAsync(async (req, res, next) => {
 });
 
 exports.createUser = catchAsync(async (req, res, next) => {
+  const { error } = validate(req.body.role !== 'user' ? userWithPasswordSchema : userSchema, req.body);
+  if (error) return next(new AppError(error.message, 400));
+  // If passed the validation create user
   const user = await User.create(req.body);
   res.status(201).json({
     status: 'success',
@@ -61,6 +65,10 @@ exports.getMe = catchAsync(async (req, res, next) => {
 });
 
 exports.updateUser = catchAsync(async (req, res, next) => {
+  const { error } = validate(req.body.role !== 'user' ? userWithPasswordSchema : userSchema, req.body);
+  if (error) return next(new AppError(error.message, 400));
+
+  // If passed the validation update user
   const user = await User.findOneAndUpdate({ id: req.params.id }, { $set: req.body }, { new: true, upsert: false });
   res.status(201).json({
     status: 'success',
@@ -69,13 +77,17 @@ exports.updateUser = catchAsync(async (req, res, next) => {
 });
 
 exports.updateMe = catchAsync(async (req, res, next) => {
-  // Create error if user POST password data
-  if (req.body.password || req.body.passwordConfirm)
-    return next(new AppError('This Route is not for password update, please use /updateMyPassword', 400));
+  // Joi validate
+  const { error } = validate(userSchema, req.body);
+  if (error) return next(new AppError(error.message, 400));
+
   // Check if a user tries to change his role
-  if (req.body.role) return next(new AppError('You not allowed to change your role!', 403));
+  if (req.body.role !== req.user.role) return next(new AppError('You not allowed to change your role!', 403));
   // Update user document
-  const updatedMe = await User.findOneAndUpdate({ id: req.user.id }, req.body, { new: true, runValidators: true });
+  const updatedMe = await User.findOneAndUpdate({ id: req.user.id }, req.body, {
+    new: true,
+    runValidators: true,
+  });
   res.status(200).json({
     status: 'success',
     updatedMe,

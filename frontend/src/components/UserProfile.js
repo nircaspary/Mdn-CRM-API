@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { useHistory } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -16,35 +16,40 @@ import 'react-toastify/dist/ReactToastify.css';
 import './css/form.css';
 
 const UserProfile = () => {
-  const history = useHistory();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(userSchema) });
 
+  const history = useHistory();
   const [location, setLocation] = useState({});
   const [role, setRole] = useState('');
   const [updateErrors, setUpdateErrors] = useState([]);
   const [pointerEvents, setPointerEvents] = useState('');
   const roles = ['user', 'admin', 'help desk', 'lab', 'info', 'tech'];
-  const params = useParams().id;
 
+  const params = useParams().id;
   let id;
   if (useParams().id === 'my-profile') id = 'me';
   else id = params;
-
   const { data, serverErrors, isPending } = useFetch(`users/${id}`);
+  useEffect(() => {
+    if (data.user) {
+      setRole(data.user.role);
+      setLocation(data.user.location);
+    }
+  }, [data.user]);
 
   const onSubmit = async (data) => {
     setPointerEvents('none');
-    const { firstName, lastName, email, cellPhone, officePhone, computerName, password } = data;
+    const { firstName, lastName, email, cellPhone, officePhone, computerName, password, passwordConfirm } = data;
     let user;
-    if (role) user = { firstName, lastName, email, cellPhone, officePhone, location, computerName, role, password };
-    else user = { firstName, lastName, email, cellPhone, officePhone, location, computerName };
+    if (role !== 'user' && id !== 'me') user = { firstName, lastName, email, cellPhone, officePhone, computerName, passwordConfirm, password };
+    else user = { firstName, lastName, email, cellPhone, officePhone, computerName };
 
     try {
-      const res = await Http.patch(`users/${id}`, user);
+      const res = await Http.patch(`users/${id}`, { ...user, role, location });
       if (res) {
         toast.success('Your profile has been successfully updated');
         setTimeout(() => history.push('/admins/faults'), 3000);
@@ -54,7 +59,7 @@ const UserProfile = () => {
       if (err) setUpdateErrors(err.response.data.message);
     }
   };
-
+  console.log(location);
   return (
     <>
       {isPending && <RenderLoader />}
@@ -85,11 +90,17 @@ const UserProfile = () => {
                 options={roles.filter((role) => role !== data.user.role)}
                 onChange={(e) => setRole(e.target.value)}
               />
-              {role && role !== 'user' && <Input label="Password" type="password" register={register} errors={errors.password} />}
+              {role && role !== 'user' && (
+                <>
+                  <Input label="Password" type="password" register={register} errors={errors.password} />
+                  <Input label="Password Confirm" type="password" register={register} errors={errors.passwordConfirm} />
+                </>
+              )}
             </>
           )}
           <div className="field form-element">
             <input type="submit" className="ui button form-element" value="Update Profile" style={{ pointerEvents: pointerEvents }} />
+
             <button
               type="button"
               className="ui button form-element red"

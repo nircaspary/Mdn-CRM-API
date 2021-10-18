@@ -4,7 +4,7 @@ const Fault = require('../models/faultsModel');
 const APIFeatures = require('../utils/apiFeatures');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
-
+const { validate, faultSchema } = require('../utils/joiSchema');
 const multerStorage = multer.memoryStorage();
 
 const multerFilter = (req, file, cb) => {
@@ -58,6 +58,8 @@ exports.searchFaults = catchAsync(async (req, res, next) => {
 });
 
 exports.createFault = catchAsync(async (req, res, next) => {
+  const { error } = validate(faultSchema, req.body);
+  if (error) return next(new AppError(error.message, 400));
   const newFault = await Fault.create(req.body);
 
   res.status(201).json({

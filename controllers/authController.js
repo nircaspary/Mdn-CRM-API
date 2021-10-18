@@ -3,6 +3,7 @@ const crypto = require('crypto');
 const AppError = require('../utils/appError');
 const Email = require('../utils/email');
 const catchAsync = require('../utils/catchAsync');
+const { validate, loginSchema, changePasswordSchema, passwordSchema, emailSchema, userSchema } = require('../utils/joiSchema');
 
 const User = require('../models/usersModel');
 
@@ -32,11 +33,9 @@ const createSendToken = (user, statusCode, res) => {
 };
 
 exports.login = catchAsync(async (req, res, next) => {
+  const { error } = validate(loginSchema, req.body);
+  if (error) return next(new AppError(error.message, 400));
   const { id, password } = req.body;
-
-  //   Check if email and password exist
-  if (!id || !password) return next(new AppError('Please provide id and password', 400));
-
   //   Check if user exist && password is correct
   const user = await User.findOne({ id }).select('+password');
 
@@ -50,7 +49,10 @@ exports.login = catchAsync(async (req, res, next) => {
 // This route is for the regular user auto creation on the fault creation form.
 exports.signup = catchAsync(async (req, res, next) => {
   // For security reasons that not everybody could enter role
-  if (req.body.role) req.body.role = 'user';
+  req.body.role = 'user';
+  // Joi Validation
+  const { error } = validate(userSchema, req.body);
+  if (error) return next(new AppError(error.message, 400));
   const user = await User.findOneAndUpdate({ id: req.params.id }, req.body, {
     upsert: true,
     $set: req.body,
@@ -95,6 +97,8 @@ exports.restrictTo = (...roles) => {
 };
 
 exports.forgotPassword = catchAsync(async (req, res, next) => {
+  const { error } = validate(emailSchema, req.body);
+  if (error) return next(new AppError(error.message, 400));
   // Get user based on email
   const user = await User.findOne({ email: req.body.email });
 
@@ -123,6 +127,8 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   }
 });
 exports.resetPassword = catchAsync(async (req, res, next) => {
+  const { error } = validate(passwordSchema, req.body);
+  if (error) return next(new AppError(error.message, 400));
   // Get user based on token
   const hashedToken = crypto.createHash('sha256').update(req.params.token).digest('hex');
   const user = await User.findOne({ passwordResetToken: hashedToken, passwordResetExpires: { $gt: Date.now() } });
@@ -141,6 +147,8 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 });
 
 exports.updatePassword = catchAsync(async (req, res, next) => {
+  const { error } = validate(changePasswordSchema, req.body);
+  if (error) return next(new AppError(error.message, 400));
   // Get user from collection
   const user = await User.findOne({ id: req.user.id }).select('+password');
   // check if current password is correct
