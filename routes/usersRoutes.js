@@ -4,7 +4,6 @@ const userController = require('../controllers/usersController');
 const authController = require('../controllers/authController');
 
 router.get('/search', authController.protect, userController.searchUsers);
-router.get('/pages', authController.protect, userController.getPages);
 router.get('/me', authController.protect, userController.getMe);
 router.delete('/:id', authController.protect, userController.deleteUser);
 router.get('/:id', userController.findUser);

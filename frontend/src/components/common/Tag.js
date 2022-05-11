@@ -5,6 +5,7 @@ import { filtersContext } from '../../contexts/loggedInContexts';
 const Tag = ({ filter }) => {
   const { filters, setFilters } = useContext(filtersContext);
   const activeFilters = { ...filters };
+  console.log(filters);
   const tag = filter.replace(/\+/g, ' ').split('=');
 
   const handleRemoveFilter = () => {

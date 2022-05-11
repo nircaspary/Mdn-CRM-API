@@ -2,22 +2,15 @@ import { React, useState, useContext, useEffect } from 'react';
 import { useLocation } from 'react-router';
 import { addFilter } from '../helpers/addFilter';
 import { filtersContext } from '../contexts/loggedInContexts';
-import * as Http from '../models/Http';
+import { pagesContext } from '../contexts/pagesContext';
 import './css/admins.css';
 
 const TableFooter = ({ headerLenght }) => {
   const [activePage, setActivePage] = useState(1);
   const { filters, setFilters } = useContext(filtersContext);
-  const [pages, setPages] = useState('');
+  const { pages } = useContext(pagesContext);
   const activeFilters = { ...filters };
-  const location = useLocation().pathname.split('/').pop();
 
-  useEffect(() => {
-    (async () => {
-      const { data } = await Http.get(`${location}/pages`);
-      if (data) setPages(data.data.pages);
-    })();
-  }, []);
   // Debounce page click for saving server calls
   useEffect(() => {
     const handler = setTimeout(() => addFilter(activeFilters, 'page', activePage, setFilters), 200);

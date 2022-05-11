@@ -36,12 +36,16 @@ exports.getAllFaults = catchAsync(async (req, res, next) => {
   if (req.user.role !== 'admin') req.query.team = req.user.role;
 
   const features = new APIFeatures(Fault.find(), req.query).filter().sort().limitFields().paginate();
+  // Number of results divided by limit per page
+  const results = await Fault.find();
+  const pages = Math.ceil(results.length / features.query.options.limit);
   const faults = await features.query;
 
   res.status(200).json({
     status: 'succses',
     data: {
       faults,
+      pages,
     },
   });
 });
@@ -107,16 +111,5 @@ exports.deleteFault = catchAsync(async (req, res, next) => {
   res.status(204).json({
     status: 'success',
     data: null,
-  });
-});
-exports.getPages = catchAsync(async (req, res, next) => {
-  const faults = await Fault.find();
-  const pages = Math.ceil(faults.length / 10);
-
-  res.status(200).json({
-    status: 'success',
-    data: {
-      pages,
-    },
   });
 });

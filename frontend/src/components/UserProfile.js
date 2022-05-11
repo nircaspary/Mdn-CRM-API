@@ -51,7 +51,7 @@ const UserProfile = () => {
     try {
       const res = await Http.patch(`users/${id}`, { ...user, role, location });
       if (res) {
-        toast.success('Your profile has been successfully updated');
+        toast.success('profile has been successfully updated');
         setTimeout(() => history.push('/admins/faults'), 3000);
       }
     } catch (err) {
@@ -82,7 +82,7 @@ const UserProfile = () => {
           </div>
           <Input label="Computer Name" register={register} defaultValue={data.user.computerName} errors={errors.computerName} />
           {/* Only if you an admin and the component is "my-profile" you can change role */}
-          {auth.user().role === 'admin' && id !== 'me' && (
+          {/* {auth.user().role === 'admin' && id !== 'me' && (
             <>
               <Dropdown
                 label="Role"
@@ -97,7 +97,7 @@ const UserProfile = () => {
                 </>
               )}
             </>
-          )}
+          )} */}
           <div className="field form-element">
             <input type="submit" className="ui button form-element" value="Update Profile" style={{ pointerEvents: pointerEvents }} />
 

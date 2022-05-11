@@ -98,7 +98,10 @@ userSchema.pre('save', async function (next) {
 });
 
 userSchema.pre('findOneAndUpdate', async function (next) {
+  // if (!this._update.$set.password) return next();
+
   if (!this._update.password || !this._update.$set.password) return next();
+
   this._update.$set.password = await bcrypt.hash(this._update.$set.password, 12);
   this._update.$set.passwordConfirm = undefined;
   next();

@@ -2,19 +2,20 @@ const User = require('../models/usersModel');
 const APIFeatures = require('../utils/apiFeatures');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
-const { validate, userSchema, updateUserSchema } = require('../utils/joiSchema');
+const { validate, userSchema, updateUserSchema, userWithPasswordSchema } = require('../utils/joiSchema');
 
 exports.getAllUsers = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(User.find(), req.query).filter().sort().limitFields().paginate();
   // Number of results divided by limit per page
-  // const results = await User.find();
-  // const pages = Math.ceil(results.length / features.query.options.limit);
+  const results = await User.find();
+  const pages = Math.ceil(results.length / features.query.options.limit);
   const users = await features.query;
 
   res.status(200).json({
     status: 'succses',
     data: {
       users,
+      pages,
     },
   });
 });
@@ -99,17 +100,5 @@ exports.deleteUser = catchAsync(async (req, res) => {
   res.status(204).json({
     status: 'success',
     data: null,
-  });
-});
-
-exports.getPages = catchAsync(async (req, res, next) => {
-  const users = await User.find();
-  const pages = Math.ceil(users.length / 10);
-
-  res.status(200).json({
-    status: 'success',
-    data: {
-      pages,
-    },
   });
 });

@@ -51,6 +51,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   // For security reasons that not everybody could enter role
   if (req.body.role) req.body.role = 'user';
   // Joi Validation
+
   const { error } = validate(userSchema, req.body);
   if (error) return next(new AppError(error.message, 400));
   const user = await User.findOneAndUpdate({ id: req.params.id }, req.body, {
