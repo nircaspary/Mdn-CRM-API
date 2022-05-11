@@ -1,0 +1,48 @@
+div.three-fields.search{
+    position: relative;
+    width: 100%; 
+}
+div.three-fields.search > div{
+    width: 100%; 
+}
+
+.key-dropdown{
+    width:100%;
+}
+.results{
+    top:65px;
+    position:absolute;
+    z-index: 1;
+    width: 100%;
+}
+.result:first-child{
+    border-top:1px solid #000000;
+}
+.result{
+    
+    display: flex;
+    justify-content: space-between;
+    background-color: #ffffff;
+    align-items: center;
+    padding:7px;
+    border-radius:3px;
+    border-right:  1px solid #000000;
+    border-bottom: 1px solid #000000;
+    border-left:  1px solid #000000;
+}
+.result > p{
+    margin:0;
+}
+.result:hover{
+    background-color: #b8b8ac;
+    cursor: pointer;
+    
+}
+.result > p{
+    width:40%;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+}

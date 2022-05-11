@@ -1,0 +1,30 @@
+
+
+.fault-page-container{
+    display: flex;
+     justify-content: space-between;
+     width: 90%;
+     height: 100%;
+     
+}
+
+.fault-page-container > div{
+    width:45%;
+    margin-top:50px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 100px;
+    
+}
+
+
+.logs-container{
+    overflow-y: scroll;
+    height: 300px;
+    width: 100%;
+    border:1px solid black;
+    border-radius:5px;
+}
