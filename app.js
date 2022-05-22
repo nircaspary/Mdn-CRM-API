@@ -15,9 +15,11 @@ const gloalErrorHandler = require('./controllers/errorController');
 // GLOBAL MIDDLEWARES
 
 // Set security HTTP headers
-// app.use(helmet());
 
-app.use(cors({ credential: true, origin: 'https://mdn-crm.herokuapp.com' }));
+// app.use(helmet());
+//{ credential: true, origin: 'https://mdn-crm.herokuapp.com' }
+
+app.use(cors());
 // Development logging
 app.use(morgan('dev'));
 // Limit requests from same IP
