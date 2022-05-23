@@ -37,13 +37,7 @@ app.use(mongoSanitize());
 app.use(xss());
 
 // Serving static files if in production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(`${__dirname}/frontend/build`));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
-  });
-} else app.use(express.static(path.resolve('./public')));
+app.use(express.static(path.resolve('./public')));
 
 // Add creationTime to a request
 app.use((req, res, next) => {
