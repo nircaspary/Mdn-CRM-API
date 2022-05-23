@@ -17,9 +17,8 @@ const gloalErrorHandler = require('./controllers/errorController');
 // Set security HTTP headers
 
 // app.use(helmet());
-//{ credential: true, origin: 'https://mdn-crm.herokuapp.com' }
 
-app.use(cors());
+app.use(cors({ credential: true, origin: 'https://mdn-crm.netlify.app' }));
 // Development logging
 app.use(morgan('dev'));
 // Limit requests from same IP
