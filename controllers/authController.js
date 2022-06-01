@@ -111,8 +111,9 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   // Send it back as an email
   try {
     let resetURL;
-    if (process.env.NODE_ENV === 'production') resetURL = `${req.protocol}://${req.get('host')}/login/forgot-password/auth/${resetToken}`;
+    if (process.env.NODE_ENV === 'production') resetURL = `https://mdn-crm.netlify.app/login/forgot-password/auth/${resetToken}`;
     else resetURL = `http://localhost:3000/login/forgot-password/auth/${resetToken}`;
+    // resetURL = `${req.protocol}://${req.get('host')}/login/forgot-password/auth/${resetToken}`;
 
     await new Email(user, resetURL).sendPasswordReset();
     res.status(200).json({
