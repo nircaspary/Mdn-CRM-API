@@ -14,13 +14,13 @@ module.exports = class Email {
   newTransport() {
     if (process.env.NODE_ENV === 'production') {
       // Sengrid
-      return nodemailer.createTransport(
-        sgTransport({
-          auth: {
-            api_key: process.env.SENDGRID_KEY,
-          },
-        })
-      );
+      return nodemailer.createTransport({
+        service: 'SendinBlue',
+        auth: {
+          user: process.env.SENDINBLUE_USERNAME,
+          pass: process.env.SENDINBLUE_PASSWORD,
+        },
+      });
     }
     // Create a transporter and return it
     return nodemailer.createTransport({

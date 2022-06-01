@@ -17,8 +17,8 @@ const gloalErrorHandler = require('./controllers/errorController');
 // Set security HTTP headers
 
 // app.use(helmet());
-
-app.use(cors({ credential: true, origin: 'https://mdn-crm.netlify.app' }));
+// let origin = process.env.NODE_ENV === 'production' ? 'https://mdn-crm.netlify.app' : 'http://127.0.0.1:3000/';
+app.use(cors());
 // Development logging
 app.use(morgan('dev'));
 // Limit requests from same IP
